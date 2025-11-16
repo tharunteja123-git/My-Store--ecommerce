@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+
+    <h1 class="mb-4">Payment</h1>
+
+    {% if outcome %}
+        <!-- Payment Result -->
+        {% if outcome == "success" %}
+            <div class="alert alert-success">
+                <h4>Payment Successful!</h4>
+                <p>Your order #{{ order.id }} has been placed successfully.</p>
+                <a href="{% url 'order_history' %}" class="btn btn-primary">View Orders</a>
+            </div>
+        {% elif outcome == "failure" %}
+            <div class="alert alert-danger">
+                <h4>Payment Failed!</h4>
+                <p>Something went wrong with your payment. Please try again.</p>
+                <a href="{% url 'cart' %}" class="btn btn-warning">Back to Cart</a>
+            </div>
+        {% else %}
+            <p>{{ message }}</p>
+        {% endif %}
+    {% else %}
+        <!-- Payment Form -->
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p class="lead">Complete your payment to confirm the order.</p>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Payment Options -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Select Payment Method</label>
+                        <select class="form-select" name="payment_method" required>
+                            <option value="">-- Choose --</option>
+                            <option value="card">Credit/Debit Card</option>
+                            <option value="upi">UPI</option>
+                            <option value="netbanking">Net Banking</option>
+                            <option value="cod">Cash on Delivery</option>
+                        </select>
+                    </div>
+
+                    <!-- Card Payment Fields -->
+                    <div id="card-fields" class="d-none">
+                        <div class="mb-3">
+                            <label class="form-label">Card Number</label>
+                            <input type="text" class="form-control" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Expiry Date</label>
+                                <input type="text" class="form-control" placeholder="MM/YY">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">CVV</label>
+                                <input type="password" class="form-control" placeholder="***">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UPI Field -->
+                    <div id="upi-field" class="d-none mb-3">
+                        <label class="form-label">UPI ID</label>
+                        <input type="text" class="form-control" placeholder="example@upi">
+                    </div>
+
+                    <!-- Net Banking -->
+                    <div id="netbanking-field" class="d-none mb-3">
+                        <label class="form-label">Select Bank</label>
+                        <select class="form-select">
+                            <option>SBI</option>
+                            <option>ICICI</option>
+                            <option>HDFC</option>
+                            <option>Axis</option>
+                        </select>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-warning w-100">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+    <script>
+        // Simple JS to toggle fields based on payment method
+        const paymentSelect = document.querySelector("select[name='payment_method']");
+        if (paymentSelect) {
+            paymentSelect.addEventListener("change", function() {
+                document.getElementById("card-fields").classList.add("d-none");
+                document.getElementById("upi-field").classList.add("d-none");
+                document.getElementById("netbanking-field").classList.add("d-none");
+
+                if (this.value === "card") {
+                    document.getElementById("card-fields").classList.remove("d-none");
+                } else if (this.value === "upi") {
+                    document.getElementById("upi-field").classList.remove("d-none");
+                } else if (this.value === "netbanking") {
+                    document.getElementById("netbanking-field").classList.remove("d-none");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Available Products</h1>
+
+    <div class="row">
+        <!-- Sidebar Filters -->
+        <div class="col-md-3">
+            <h5 class="fw-bold">Filters</h5>
+            <div class="accordion" id="filterAccordion">
+
+                <!-- Category Filter -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingCategory">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory">
+                            Category
+                        </button>
+                    </h2>
+                    <div id="collapseCategory" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="?category=" class="text-decoration-none">All Categories</a>
+                                </li>
+                                {% for cat in categories %}
+                                <li class="list-group-item">
+                                    <a href="?category={{ cat.id }}" class="text-decoration-none">{{ cat.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand Filter -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingBrand">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrand">
+                            Brand
+                        </button>
+                    </h2>
+                    <div id="collapseBrand" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="?brand=Nike">Nike</a></li>
+                                <li class="list-group-item"><a href="?brand=Adidas">Adidas</a></li>
+                                <li class="list-group-item"><a href="?brand=Samsung">Samsung</a></li>
+                                <li class="list-group-item"><a href="?brand=Apple">Apple</a></li>
+                                <li class="list-group-item"><a href="?brand=Puma">Puma</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPrice">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice">
+                            Price
+                        </button>
+                    </h2>
+                    <div id="collapsePrice" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="?price=0-500">Under ₹500</a></li>
+                                <li class="list-group-item"><a href="?price=500-1000">₹500 - ₹1000</a></li>
+                                <li class="list-group-item"><a href="?price=1000-5000">₹1000 - ₹5000</a></li>
+                                <li class="list-group-item"><a href="?price=5000-">Above ₹5000</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color Filter -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingColor">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColor">
+                            Color
+                        </button>
+                    </h2>
+                    <div id="collapseColor" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="?color=Black">Black</a></li>
+                                <li class="list-group-item"><a href="?color=White">White</a></li>
+                                <li class="list-group-item"><a href="?color=Red">Red</a></li>
+                                <li class="list-group-item"><a href="?color=Blue">Blue</a></li>
+                                <li class="list-group-item"><a href="?color=Green">Green</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Material Filter -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingMaterial">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMaterial">
+                            Material
+                        </button>
+                    </h2>
+                    <div id="collapseMaterial" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="?material=Cotton">Cotton</a></li>
+                                <li class="list-group-item"><a href="?material=Leather">Leather</a></li>
+                                <li class="list-group-item"><a href="?material=Polyester">Polyester</a></li>
+                                <li class="list-group-item"><a href="?material=Metal">Metal</a></li>
+                                <li class="list-group-item"><a href="?material=Plastic">Plastic</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rating Filter -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingRating">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRating">
+                            Customer Rating
+                        </button>
+                    </h2>
+                    <div id="collapseRating" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="?rating=4">4★ & above</a></li>
+                                <li class="list-group-item"><a href="?rating=3">3★ & above</a></li>
+                                <li class="list-group-item"><a href="?rating=2">2★ & above</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="col-md-9">
+            <!-- Search + Category Filter -->
+            <form method="get" class="row mb-4">
+                <div class="col-md-6">
+                    <input type="text" name="q" class="form-control" placeholder="Search products..." value="{{ request.GET.q }}">
+                </div>
+                <div class="col-md-4">
+                    <select name="category" class="form-select">
+                        <option value="">All Categories</option>
+                        {% for cat in categories %}
+                            <option value="{{ cat.id }}" {% if request.GET.category == cat.id|stringformat:"s" %}selected{% endif %}>
+                                {{ cat.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-warning w-100">Filter</button>
+                </div>
+            </form>
+
+            <div class="row">
+                {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top" alt="No image">
+                        {% endif %}
+                        <div class="card-body text-center">
+                            <h6 class="card-title fw-bold">{{ product.name }}</h6>
+                            <p class="card-text text-success fw-bold">₹{{ product.price }}</p>
+                            <span class="badge bg-info mb-2">{{ product.category.name }}</span>
+                            <p class="text-muted small">{{ product.description|truncatewords:12 }}</p>
+
+                            {% if product.stock > 0 %}
+                                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-sm btn-warning">Add to Cart</a>
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                            {% else %}
+                                <button class="btn btn-sm btn-secondary" disabled>Out of Stock</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-warning">No products found.</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

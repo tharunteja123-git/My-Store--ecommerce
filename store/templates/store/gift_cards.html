@@ -1,0 +1,17 @@
+{% extends "store/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h3 class="fw-bold mb-3">My Gift Cards</h3>
+  {% if gift_cards %}
+    <ul class="list-group">
+      {% for card in gift_cards %}
+        <li class="list-group-item">
+          <strong>{{ card.code }}</strong> - Balance: ₹{{ card.balance }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info">You don’t have any gift cards yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

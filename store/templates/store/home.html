@@ -1,0 +1,74 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid px-0">
+
+    <!-- Category Strip -->
+     <div class="bg-white py-3 px-3 mb-4 border-top border-bottom">
+    <div class="d-flex overflow-auto">
+
+        <!-- Mobiles -->
+        <div class="text-center me-4">
+            <img src="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/5f2ee7f883cdb774.png?q=100" alt="Mobiles" style="width:60px; height:60px;">
+            <p class="small fw-bold mt-1">Mobiles</p>
+            <div class="small text-muted">
+                <span>Smartphones</span> | <span>Accessories</span> | <span>Tablets</span>
+            </div>
+        </div>
+
+        <!-- Fashion -->
+        <div class="text-center me-4">
+            <img src="https://m.media-amazon.com/images/I/61l0MoyijTL._SX679_.jpg" alt="Fashion" style="width:60px; height:60px;">
+            <p class="small fw-bold mt-1">Fashion</p>
+            <div class="small text-muted">
+                <span>Men</span> | <span>Women</span> | <span>Kids</span>
+            </div>
+        </div>
+
+        <!-- Electronics -->
+        <div class="text-center me-4">
+            <img src="https://m.media-amazon.com/images/G/31/IMG24/Smart_Watches/ELP_revamp/laptop._SS400_QL85_.jpg" alt="Electronics" style="width:60px; height:60px;">
+            <p class="small fw-bold mt-1">Electronics</p>
+            <div class="small text-muted">
+                <span>TVs</span> | <span>Laptops</span> | <span>Cameras</span>
+            </div>
+        </div>
+
+        <!-- Home & Kitchen -->
+        <div class="text-center me-4">
+            <img src="https://m.media-amazon.com/images/G/31/img21/OHL/Halo/NOcallouts/Unrec/SA._SS300_QL85_.jpg" alt="Home & Kitchen" style="width:60px; height:60px;">
+            <p class="small fw-bold mt-1">Home & Kitchen</p>
+            <div class="small text-muted">
+                <span>Furniture</span> | <span>Decor</span> | <span>Appliances</span>
+            </div>
+        </div>
+
+        <!-- Grocery -->
+        <div class="text-center me-4">
+            <img src="https://rukminim2.flixcart.com/fk-p-flap/64/64/image/e730a834ad950bae.png?q=100" alt="Grocery" style="width:60px; height:60px;">
+            <p class="small fw-bold mt-1">Grocery</p>
+            <div class="small text-muted">
+                <span>Fruits</span> | <span>Vegetables</span> | <span>Snacks</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+    <!-- Warm Welcome Section -->
+    <section class="bg-light py-5 mb-4 text-center shadow-sm">
+        <div class="container">
+            <h3 class="fw-bold text-dark">Welcome to MyStore</h3>
+            <p class="lead text-muted">
+                Discover trusted brands and products handpicked just for you.
+            </p>
+            <a href="{% url 'product_list' %}" class="btn btn-warning btn-lg mt-3">
+                Start Shopping Now
+            </a>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

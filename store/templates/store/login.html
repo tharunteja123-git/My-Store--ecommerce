@@ -1,0 +1,32 @@
+{% extends "store/base.html" %}
+{% block content %}
+<div class="container-fluid bg-light py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 bg-white shadow-sm rounded p-4">
+      <div class="row">
+        <!-- Left Side: Welcome -->
+        <div class="col-md-6 border-end d-flex flex-column justify-content-center align-items-center text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Shopping" class="mb-4" style="width: 120px;">
+          <h4 class="fw-bold">Login</h4>
+          <p class="text-muted">Get access to your Orders, Wishlist and Recommendations</p>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="col-md-6">
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="identifier" class="form-label">Enter Email or Phone Number</label>
+              <input type="text" name="identifier" id="identifier" class="form-control" placeholder="e.g. john@example.com or 9876543210">
+            </div>
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-warning">Request OTP</button>
+            </div>
+            <p class="text-muted small">New to MyStore? <a href="{% url 'signup' %}" class="text-primary">Create an account</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
