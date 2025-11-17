@@ -1,0 +1,40 @@
+Overview:
+A full‑stack ecommerce web application built with Django and Bootstrap, replicating the look and feel of Flipkart/Amazon. Features include product listings, hero banners, category strips, horizontal scroll sections, and OTP‑based login for secure authentication.
+
+Features:
+Full‑width hero banners and modular product sections.
+
+Category strips with horizontal scrolling.
+
+OTP‑based login and authentication flow.
+
+Responsive design with Bootstrap for mobile, tablet, and desktop.
+
+Scalable backend with Django querysets and views.
+
+Deployment ready with Procfile, requirements.txt, and runtime.txt.
+
+Tech Stack:
+Backend: Django, Python.
+
+Frontend: HTML, CSS, Bootstrap, JavaScript.
+
+Database: PostgreSQL / MySQL.
+
+Deployment: Render / Railway (Gunicorn + Whitenoise).
+
+Version Control: GitHub.
+
+Project Structure:
+ecommerce/
+│── manage.py
+│── Procfile
+│── runtime.txt
+│── requirements.txt
+│── ecommerce/        # Project settings, wsgi.py
+│── store/            # App with models, views, templates
+│── static/           # CSS, JS, images
+│── templates/        # HTML templates
+
+Screenshots:
+
